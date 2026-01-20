@@ -1,11 +1,12 @@
-import xbmcgui, xbmc
-from xbmcgui import ACTION_NAV_BACK, ACTION_PREVIOUS_MENU, ACTION_STOP
+import xbmcgui, xbmc, xbmcaddon
 
 import helper.utils as utils
 from helper import LazyLogger
 
 OK_BUTTON = 2101
 
+ACTION_PREVIOUS_MENU = 10
+ACTION_BACK = 92
 INSTRUCTION_LABEL = 203
 AUTHCODE_LABEL = 204
 WARNING_LABEL = 205
@@ -13,6 +14,7 @@ CENTER_Y = 6
 CENTER_X = 2
 
 MIN_REMAINING_SECONDS = 5
+AUTOSKIP = bool(xbmcaddon.Addon('service.jellyskip').getSettingBool('autoskip'))
 LOG = LazyLogger(__name__)
 
 class SkipSegmentDialogue(xbmcgui.WindowXMLDialog):
@@ -23,6 +25,9 @@ class SkipSegmentDialogue(xbmcgui.WindowXMLDialog):
         self.player = xbmc.Player()
 
     def onInit(self):
+        if AUTOSKIP == True:
+            self.onClick(OK_BUTTON)
+            return
         skip_label = 'Skip ' + str(self.segment_type)
         skip_button = self.getControl(OK_BUTTON)
         skip_button.setLabel(skip_label)
@@ -55,7 +60,7 @@ class SkipSegmentDialogue(xbmcgui.WindowXMLDialog):
         xbmc.executebuiltin("NotifyAll(%s, %s, %s)" % (sender, "Jellyskip.DialogueClosed", {}))
 
     def onAction(self, action):
-        if action in (ACTION_NAV_BACK, ACTION_PREVIOUS_MENU, ACTION_STOP):
+        if action == ACTION_PREVIOUS_MENU or action == ACTION_BACK:
             self.close()
 
     def onControl(self, control):
