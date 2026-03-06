@@ -36,3 +36,27 @@ msgstr "General"
 msgctxt "#30012"
 msgid "Auto Skip"
 msgstr "Auto Skip"
+
+msgctxt "#30020"
+msgid "Netflix-style Skip Button"
+msgstr "Netflix-style Skip Button"
+
+msgctxt "#30021"
+msgid "Countdown length (seconds)"
+msgstr "Countdown length (seconds)"
+
+msgctxt "#30022"
+msgid "Dismiss"
+msgstr "Dismiss"
+
+msgctxt "#30019"
+msgid "Skip mode"
+msgstr "Skip mode"
+
+msgctxt "#30030"
+msgid "Autoskip"
+msgstr "Autoskip"
+
+msgctxt "#30031"
+msgid "Netflix-style"
+msgstr "Netflix-style"
